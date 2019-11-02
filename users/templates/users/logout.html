@@ -1,0 +1,9 @@
+{% extends "blog/parent.html" %}
+{% block content %}
+
+<div class="col-md-8">
+    <h2>You have been logged out </h2>
+    <button><a href="{% url 'login' %}">login</a></button>
+</div>
+
+{% endblock %}

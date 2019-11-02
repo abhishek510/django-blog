@@ -1,0 +1,57 @@
+{% extends "blog/parent.html" %}
+{% block content %}
+
+<div class="col-md-8">
+    <a href="{% url 'dashboard' %}"><h2>My Blogs</h2></a>
+     <!--made change in the above line dashboard123  -->
+    <!-- Blog Post -->
+    <div class="card mb-4 mt-4">
+      <div class="card-body">
+        <h2 class="card-title">{{ object.title }}</h2>
+        <p class="card-text">{{object.text}}</p>
+      </div>
+      <div class="card-footer text-muted">
+        Posted on {{object.date}} by
+        <span class= "text-info mr-2">{{object.author}}</span>
+      </div>
+    </div>
+    <button style="background-color:green"><a href="{% url 'add_like' pk=object.pk %}" style="color:white">Like</a></button>
+    <button style="background-color:red"><a href="{% url 'add_dislike' pk=object.pk %}" style="color:white">Dislike</a></button>
+    <br><br>
+    <a class='btn btn-primary btn-sm' href="{% url 'add_comment_to_blog' pk=object.pk %}">Comment</a>
+    <hr>
+    {% for comment in object.comments.all %}
+    <div class="card mb-4 mt-4">
+        <div class="card-body">
+          <p class="card-text">{{comment.text}}</p>
+        </div>
+        <div class="card-footer text-muted">
+          Posted on {{comment.date}} by
+          <span class= "text-info mr-2">{{comment.name}}</span>
+        </div>
+      </div>
+      {% empty %}
+        <p>No Comments here</p>
+    {% endfor %}
+
+  </div>
+
+{% endblock %}
+
+{% block content1 %}
+<div>
+<h4>Likes list: </h4>
+<ul class="list-unstyled mb-0"></ul>
+{% for like in likes %}
+<li>{{like.user.username}}</li>
+{% endfor %}
+</div>
+<br>
+<div>
+<h4>Dislikes list: </h4>
+<ul class="list-unstyled mb-0"></ul>
+{% for dislike in dislikes %}
+<li>{{dislike.user.username}}</li>
+</div>
+{% endfor %}
+{% endblock %}

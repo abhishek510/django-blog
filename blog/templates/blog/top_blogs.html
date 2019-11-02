@@ -1,0 +1,59 @@
+{% extends "blog/parent.html" %}
+{% block content %}
+
+<div class="col-md-8">
+    <a href="{% url 'dashboard' %}"><h2>My Blogs</h2></a>
+    <h2>Most Liked blogs: </h2>
+    {% for blog in likes %}
+    <!-- Blog Post -->
+    <div class="card mb-4 mt-4">
+      <div class="card-body">
+        <h2 class="card-title">{{ blog.0.title }}</h2>
+        <p class="card-text">{{blog.0.text}}</p>
+        <a href="{% url 'blog-details' blog.0.pk %}" class="btn btn-primary btn-sm">Read More &rarr;</a>
+      </div>
+      <div class="card-footer text-muted">
+        Posted on {{blog.0.date}} by
+        <span class= "text-info mr-2">{{blog.0.author}}</span>
+        Likes:<span class= "text-info mr-2">{{blog.1}}</span>
+      </div>
+    </div>
+    {% endfor %}
+    <hr>
+    <h2>Most Disliked blogs: </h2>
+    {% for blog in dislikes %}
+    <!-- Blog Post -->
+    <div class="card mb-4 mt-4">
+      <div class="card-body">
+        <h2 class="card-title">{{ blog.0.title }}</h2>
+        <p class="card-text">{{blog.0.text}}</p>
+        <a href="{% url 'blog-details' blog.0.pk %}" class="btn btn-primary btn-sm">Read More &rarr;</a>
+      </div>
+      <div class="card-footer text-muted">
+        Posted on {{blog.0.date}} by
+        <span class= "text-info mr-2">{{blog.0.author}}</span>
+        Dislikes:<span class= "text-info mr-2">{{blog.1}}</span>
+      </div>
+    </div>
+    {% endfor %}
+<hr>
+    <h2>Most Commented blogs: </h2>
+    {% for blog in comments %}
+    <!-- Blog Post -->
+    <div class="card mb-4 mt-4">
+      <div class="card-body">
+        <h2 class="card-title">{{ blog.0.title }}</h2>
+        <p class="card-text">{{blog.0.text}}</p>
+        <a href="{% url 'blog-details' blog.0.pk %}" class="btn btn-primary btn-sm">Read More &rarr;</a>
+      </div>
+      <div class="card-footer text-muted">
+        Posted on {{blog.0.date}} by
+        <span class= "text-info mr-2">{{blog.0.author}}</span>
+        Comments:<span class= "text-info mr-2">{{blog.1}}</span>
+      </div>
+    </div>
+    {% endfor %}
+    
+  </div>
+
+{% endblock %}

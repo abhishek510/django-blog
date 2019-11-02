@@ -1,0 +1,23 @@
+{% extends "blog/parent.html" %}
+{% block content %}
+
+<div class="col-md-8">
+    <a href="{% url 'dashboard' %}"><h2>My Blogs</h2></a>
+    {% for blog in object_list %}
+    <!-- Blog Post -->
+    <div class="card mb-4 mt-4">
+      <div class="card-body">
+        <h2 class="card-title">{{ blog.title }}</h2>
+        <p class="card-text">{{blog.text}}</p>
+        <a href="{% url 'blog-details' blog.pk %}" class="btn btn-primary btn-sm">Read More &rarr;</a>
+      </div>
+      <div class="card-footer text-muted">
+        Posted on {{blog.date}} by
+        <span class= "text-info mr-2">{{blog.author}}</span>
+      </div>
+    </div>
+    {% endfor %}
+    
+  </div>
+
+{% endblock %}
